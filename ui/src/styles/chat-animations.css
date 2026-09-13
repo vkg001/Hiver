@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    --console-bg: #eef1ef;
+    --console-surface: #ffffff;
+    --console-ink: #14201d;
+    --console-muted: #5b6b66;
+    --console-border: #dbe2dd;
+
+    --agent: #0f6b5c;
+    --agent-bubble: #e7f2ef;
+    --user-bubble: #1f2a44;
+    --user-text: #f4f6f5;
+
+    --amber: #c2703d;
+    --amber-bg: #fbf1e8;
+    --error: #b3432d;
+    --error-bg: #fdeeea;
+}
+
+.font-display {
+    font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-body {
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* One orchestrated entrance per message — nothing else animates on its own */
+@keyframes msgIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.msg-enter {
+    animation: msgIn 0.28s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+/* Streaming cursor on the agent message currently being written */
+@keyframes cursorBlink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.cursor-blink::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 0.9em;
+    margin-left: 3px;
+    vertical-align: -0.1em;
+    background: var(--agent);
+    animation: cursorBlink 0.9s step-start infinite;
+}
+
+/* Typing indicator dots, shown before the first token arrives */
+@keyframes typingBounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0.6);
+        opacity: 0.35;
+    }
+
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.typing-dot {
+    animation: typingBounce 1.1s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.typing-dot:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Slow ambient pulse used only for the "human joining" indicator */
+@keyframes slowPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.45;
+    }
+}
+
+.pulse-dot {
+    animation: slowPulse 1.8s ease-in-out infinite;
+}
+
+/* Thin, quiet scrollbar for the message thread */
+.console-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.console-scroll::-webkit-scrollbar-thumb {
+    background: var(--console-border);
+    border-radius: 999px;
+}
+
+.console-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .msg-enter,
+    .cursor-blink::after,
+    .typing-dot,
+    .pulse-dot {
+        animation: none !important;
+    }
+}
