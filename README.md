@@ -1,6 +1,6 @@
-# Hiver — AI Customer Support Agent
+# SprintCare - Customer Support Agent
 
-Hiver is a full-stack AI customer-support application built around a local LLM, semantic retrieval, intent classification, and rule-based escalation. The project is designed around SprintCare-style Twitter support conversations and uses historical customer-support interactions as the knowledge base for grounded responses.
+This is the **Hiver assignment**, implemented as **SprintCare - Customer Support Agent**, a full-stack AI customer-support application built around a local LLM, semantic retrieval, intent classification, and rule-based escalation. The project is designed around SprintCare-style Twitter support conversations and uses historical customer-support interactions as the knowledge base for grounded responses.
 
 The repository contains three main pieces:
 
